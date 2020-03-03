@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Produtos.Dominio.Interfaces.Repositorios
 {
-    interface IProdutoRepositorio : IRepositorioBase<Produto>
+    public interface IProdutoRepositorio : IRepositorioBase<Produto>
     {
     }
 }
