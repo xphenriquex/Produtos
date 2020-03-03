@@ -12,6 +12,5 @@ namespace Produtos.Dominio.Interfaces.Servicos
         void Cadastrar(TEntidade entity);
         void Atualizar(TEntidade entity);
         void Deletar(TEntidade entity);
-        Task<TEntidade> SalvarAsync(TEntidade entity);
     }
 }
