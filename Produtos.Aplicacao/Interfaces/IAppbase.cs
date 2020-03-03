@@ -1,6 +1,7 @@
 ﻿using Produtos.Aplicacao.DTO;
 using Produtos.Dominio.Entidades;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+
 
 namespace Produtos.Aplicacao.Interfaces
 {
@@ -8,8 +9,10 @@ namespace Produtos.Aplicacao.Interfaces
         where TEntidade : EntidadeBase
         where TEntidadeDTO : DTOBase
     {
-        void Cadastrar(TEntidadeDTO entity);
-        void Atualizar(TEntidadeDTO entity);
-        void Deletar(TEntidadeDTO entity);
+        int Incluir(TEntidade entidade);
+        void Excluir(TEntidade entidade);
+        void Alterar(TEntidade entidade);
+        TEntidade SelecionarPorId(int id);
+        IEnumerable<TEntidade> SelecionarTodos();
     }
 }

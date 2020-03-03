@@ -24,20 +24,37 @@ namespace Produtos.Aplicacao.Servicos
             _iMapper = IMapper;
         }
 
-        public void Atualizar(TEntidadeDTO entity)
+
+        public void Alterar(TEntidadeDTO entidade)
         {
-            _servico.Atualizar(_iMapper.Map<TEntidade>(entity));
+            _servico.Alterar(_iMapper.Map<TEntidade>(entidade));
         }
 
-        public void Cadastrar(TEntidadeDTO entity)
+        public void Excluir(int id)
         {
-            _servico.Cadastrar(_iMapper.Map<TEntidade>(entity));
+            _servico.Excluir(id);
         }
 
-        public void Deletar(TEntidadeDTO entity)
+        public void Excluir(TEntidadeDTO entidade)
         {
-            _servico.Deletar(_iMapper.Map<TEntidade>(entity));
+            _servico.Excluir(_iMapper.Map<TEntidade>(entidade));
         }
 
+        public int Incluir(TEntidadeDTO entidade)
+        {
+            return _servico.Incluir(_iMapper.Map<TEntidade>(entidade));
+        }
+
+        public TEntidadeDTO SelecionarPorId(int id)
+        {
+            return _iMapper.Map<TEntidadeDTO>(_servico.SelecionarPorId(id));
+        }
+
+        public IEnumerable<TEntidadeDTO> SelecionarTodos()
+        {
+            return _iMapper.Map<IEnumerable<TEntidadeDTO>>(_servico.SelecionarTodos());
+        }
     }
+
+}
 }

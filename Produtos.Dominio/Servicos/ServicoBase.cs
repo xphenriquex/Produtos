@@ -1,10 +1,7 @@
 ﻿using Produtos.Dominio.Entidades;
 using Produtos.Dominio.Interfaces.Repositorios;
 using Produtos.Dominio.Interfaces.Servicos;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Produtos.Dominio.Servicos
 {
@@ -17,25 +14,29 @@ namespace Produtos.Dominio.Servicos
             _repo = repositorio;
         }
 
-        public void Atualizar(TEntidade entity)
+        public void Alterar(TEntidade entidade)
         {
-            _repo.Atualizar(entity);
+            _repo.Alterar(entidade);
         }
 
-        public void Cadastrar(TEntidade entity)
+        public void Excluir(TEntidade entidade)
         {
-            _repo.Cadastrar(entity);
+            _repo.Excluir(entidade);
         }
 
-        public void Deletar(TEntidade entity)
+        public int Incluir(TEntidade entidade)
         {
-            _repo.Deletar(entity);
-
+            return _repo.Incluir(entidade);
         }
 
-        public Task<TEntidade> SalvarAsync(TEntidade entity)
+        public TEntidade SelecionarPorId(int id)
         {
-            return _repo.SalvarAsync(entity);
+            return _repo.SelecionarPorId(id);
+        }
+
+        public IEnumerable<TEntidade> SelecionarTodos()
+        {
+            return _repo.SelecionarTodos();
         }
     }
 }

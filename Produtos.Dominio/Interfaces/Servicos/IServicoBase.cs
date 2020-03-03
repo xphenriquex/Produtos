@@ -9,8 +9,10 @@ namespace Produtos.Dominio.Interfaces.Servicos
     public interface IServicoBase<TEntidade>
         where TEntidade : EntidadeBase
     {
-        void Cadastrar(TEntidade entity);
-        void Atualizar(TEntidade entity);
-        void Deletar(TEntidade entity);
+        int Incluir(TEntidade entidade);
+        void Excluir(TEntidade entidade);
+        void Alterar(TEntidade entidade);
+        TEntidade SelecionarPorId(int id);
+        IEnumerable<TEntidade> SelecionarTodos();
     }
 }
