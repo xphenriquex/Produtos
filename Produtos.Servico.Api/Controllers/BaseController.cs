@@ -3,6 +3,7 @@ using System;
 using Produtos.Dominio.Entidades;
 using Produtos.Aplicacao.DTO;
 using Produtos.Aplicacao.Interfaces;
+using Microsoft.AspNetCore.Cors;
 
 namespace Produtos.Servico.Api.Controllers
 {
@@ -36,7 +37,7 @@ namespace Produtos.Servico.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult SelecionarPorId(int id)
+        public IActionResult SelecionarPorId([FromRoute] int id)
         {
             try
             {
@@ -76,19 +77,18 @@ namespace Produtos.Servico.Api.Controllers
             }
         }
 
-        //[HttpDelete]
-        //[Route("{id}")]
-        //public IActionResult Excluir(int id)
-        //{
-        //    try
-        //    {
-        //        app.Excluir(id);
-        //        return new OkObjectResult(true);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+        [HttpDelete]
+        public IActionResult Excluir([FromBody] EntidadeDTO dado)
+        {
+            try
+            {
+                app.Excluir(dado);
+                return new OkObjectResult(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

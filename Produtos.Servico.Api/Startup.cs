@@ -55,7 +55,7 @@ namespace Produtos.Servico.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -66,6 +66,7 @@ namespace Produtos.Servico.Api
             }
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
@@ -85,7 +86,7 @@ namespace Produtos.Servico.Api
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }
