@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Produtos.Servico.Api.Controllers
 {
-    public class ProdutoController : BaseController<Produto, ProdutoDTO>
+    public class ProdutosController : BaseController<Produto, ProdutoDTO>
     {
-        public ProdutoController(IProdutoApp app) : base(app)
+        public ProdutosController(IProdutoApp app) : base(app)
         {
 
         }
