@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Produtos.Dominio.Entidades;
 using Produtos.Dominio.Interfaces.Repositorios;
-using Restaurante.Infra.Data.Contextos;
-using System;
+using Produtos.Infra.Data.Contextos;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Produtos.Infra.Data.Repositorios
 {

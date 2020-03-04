@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Produtos.Dominio.Entidades;
 
-namespace Restaurante.Infra.Data.Mapeamentos
+namespace Produtos.Infra.Data.Mapeamentos
 {
     public class MapBase<T> : IEntityTypeConfiguration<T>
         where T : EntidadeBase

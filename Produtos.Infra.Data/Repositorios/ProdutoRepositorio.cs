@@ -1,6 +1,6 @@
 ﻿using Produtos.Dominio.Entidades;
 using Produtos.Dominio.Interfaces.Repositorios;
-using Restaurante.Infra.Data.Contextos;
+using Produtos.Infra.Data.Contextos;
 
 
 namespace Produtos.Infra.Data.Repositorios

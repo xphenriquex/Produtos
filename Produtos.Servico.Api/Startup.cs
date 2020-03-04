@@ -7,10 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Produtos.Aplicacao;
+using Produtos.Infra.Data.Contextos;
 using Produtos.Infra.IoC;
-using Restaurante.Infra.Data.Contextos;
 
-namespace Restaurante.Servico.Api
+namespace Produtos.Servico.Api
 {
     public class Startup
     {
@@ -39,8 +39,7 @@ namespace Restaurante.Servico.Api
                 Options.AddPolicy("CorsPolicy",
                     builder => builder.AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
+                        .AllowAnyHeader());
             });
 
             InjetorDepencias.Registrar(services);
@@ -57,6 +56,7 @@ namespace Restaurante.Servico.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             

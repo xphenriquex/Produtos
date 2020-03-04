@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq;
 using Produtos.Dominio.Entidades;
-using Restaurante.Infra.Data.Mapeamentos;
+using Produtos.Infra.Data.Mapeamentos;
 
-namespace Restaurante.Infra.Data.Contextos
+namespace Produtos.Infra.Data.Contextos
 {
     public class Contexto : DbContext
     {
