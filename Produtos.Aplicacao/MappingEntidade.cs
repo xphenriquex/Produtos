@@ -11,8 +11,8 @@ namespace Produtos.Aplicacao
     {
         public MappingEntidade()
         {
-            CreateMap<ProdutoDTO, ProdutoDTO>();
-            CreateMap<ProdutoDTO, ProdutoDTO>();
+            CreateMap<Produto, ProdutoDTO>();
+            CreateMap<ProdutoDTO, Produto>();
         }
     }
 }

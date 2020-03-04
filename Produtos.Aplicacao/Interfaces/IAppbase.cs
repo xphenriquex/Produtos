@@ -9,10 +9,10 @@ namespace Produtos.Aplicacao.Interfaces
         where TEntidade : EntidadeBase
         where TEntidadeDTO : DTOBase
     {
-        int Incluir(TEntidade entidade);
-        void Excluir(TEntidade entidade);
-        void Alterar(TEntidade entidade);
-        TEntidade SelecionarPorId(int id);
-        IEnumerable<TEntidade> SelecionarTodos();
+        int Incluir(TEntidadeDTO entidade);
+        void Excluir(TEntidadeDTO entidade);
+        void Alterar(TEntidadeDTO entidade);
+        TEntidadeDTO SelecionarPorId(int id);
+        IEnumerable<TEntidadeDTO> SelecionarTodos();
     }
 }

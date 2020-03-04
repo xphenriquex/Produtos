@@ -3,10 +3,7 @@ using Produtos.Aplicacao.DTO;
 using Produtos.Aplicacao.Interfaces;
 using Produtos.Dominio.Entidades;
 using Produtos.Dominio.Interfaces.Servicos;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Produtos.Aplicacao.Servicos
 {
@@ -24,15 +21,9 @@ namespace Produtos.Aplicacao.Servicos
             _iMapper = IMapper;
         }
 
-
         public void Alterar(TEntidadeDTO entidade)
         {
             _servico.Alterar(_iMapper.Map<TEntidade>(entidade));
-        }
-
-        public void Excluir(int id)
-        {
-            _servico.Excluir(id);
         }
 
         public void Excluir(TEntidadeDTO entidade)
@@ -54,7 +45,6 @@ namespace Produtos.Aplicacao.Servicos
         {
             return _iMapper.Map<IEnumerable<TEntidadeDTO>>(_servico.SelecionarTodos());
         }
-    }
 
-}
+    }
 }
