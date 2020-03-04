@@ -25,7 +25,6 @@ export class ProdutoService {
   }
 
   getProdutos(): Observable<Produto[]> {
-    console.log(this.myAppUrl + "/" + this.myApiUrl);
     return this.http.get<Produto[]>(this.myAppUrl + "/" + this.myApiUrl)
     .pipe(
       retry(1),
@@ -34,23 +33,24 @@ export class ProdutoService {
   }
 
   getProduto(id: number): Observable<Produto> {
-      return this.http.get<Produto>(this.myAppUrl + this.myApiUrl + id)
+      return this.http.get<Produto>(this.myAppUrl + "/" + this.myApiUrl + id)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  saveProduto(Produto): Observable<Produto> {
-      return this.http.post<Produto>(this.myAppUrl + this.myApiUrl, JSON.stringify(Produto), this.httpOptions)
+  saveProduto(produto: Produto): Observable<Produto> {
+      return this.http.post<Produto>(this.myAppUrl + "/" + this.myApiUrl, JSON.stringify(produto), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  updateProduto(id: number, Produto): Observable<Produto> {
-      return this.http.put<Produto>(this.myAppUrl + this.myApiUrl + id, JSON.stringify(Produto), this.httpOptions)
+  updateProduto(produto: Produto): Observable<Produto> {
+      console.log(this.myAppUrl + "/" + this.myApiUrl, JSON.stringify(produto));
+      return this.http.put<Produto>(this.myAppUrl + "/" + this.myApiUrl, JSON.stringify(produto), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
@@ -58,14 +58,14 @@ export class ProdutoService {
   }
 
   deleteProduto(id: number): Observable<Produto> {
-      return this.http.delete<Produto>(this.myAppUrl + this.myApiUrl + id)
+      return this.http.delete<Produto>(this.myAppUrl + "/" + this.myApiUrl + id)
       .pipe(
         retry(1),
         catchError(this.errorHandler)
       );
   }
 
-  errorHandler(error) {
+  errorHandler(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Get client-side error

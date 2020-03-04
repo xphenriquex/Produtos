@@ -1,1 +1,11 @@
-<p>produto works!</p>
+<ng-container *ngIf="(produto); else loading">
+
+    <h1>{{ produto.id }}</h1>
+    <li>{{ produto.descricao }}</li>
+    <div>{{ produto.marca }}</div>
+    <ul>
+      <li>{{ produto.numeroLote }}</li>
+    </ul>
+  
+  </ng-container>
+  <ng-template #loading>Loading…</ng-template>
