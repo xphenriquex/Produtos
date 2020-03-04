@@ -1,12 +1,16 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Produtos.Aplicacao;
+using Produtos.Infra.IoC;
+using Restaurante.Infra.Data.Contextos;
 
-namespace Produtos.Servico.Api
+namespace Restaurante.Servico.Api
 {
     public class Startup
     {
@@ -20,12 +24,29 @@ namespace Produtos.Servico.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            // In production, the Angular files will be served from this directory
+            services.AddControllers();
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddDbContext<Contexto>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Produto")));
+
+            services.AddCors(Options =>
+            {
+                Options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
+            InjetorDepencias.Registrar(services);
+
+            services.AddAutoMapper(typeof(MappingEntidade));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,15 +56,10 @@ namespace Produtos.Servico.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
@@ -57,6 +73,8 @@ namespace Produtos.Servico.Api
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
+
+            //app.UseAuthorization();
 
             app.UseSpa(spa =>
             {
